@@ -66,19 +66,13 @@ function createWebpackConfig(env={}) {
       path: path.resolve(outputDir),
       filename: buildMode === 'prod' ? '[name].[hash].js' : '[name].js'
     },
-    devtool:'source-map',
-    watch: true,
     module: {
       loaders: [
         { test: /\.ts$/, loader: tsLoader },
         { test: /\.html$/, loader: 'raw-loader' },
         { test: /\.scss$/, exclude: path.resolve('src/app'), loader: scssLoader },
         { test: /\.scss$/, include: path.resolve('src/app'), loader: ['raw-loader', 'postcss-loader', 'sass-loader'] },
-        { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' },
-        {
-          test: /\.json$/,
-          loader: 'json-loader'
-        }
+        { test: /\.(eot|svg|ttf|woff|woff2)(\?v=.*)?$/, loader: 'file-loader?name=fonts/[name].[ext]' }
       ]
     },
     resolve: {
